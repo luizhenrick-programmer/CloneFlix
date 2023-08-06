@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "CloneFlix",
+    "slug": "CloneFlix",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
