@@ -31,7 +31,7 @@ export const styles = StyleSheet.create({
         width: '80%',
         paddingLeft: 15,
     },
-    nosearch: {
+    noResult: {
         color: "#FFF",
         fontSize: 18,
         textAlign: "center"
