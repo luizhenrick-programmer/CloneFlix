@@ -39,5 +39,5 @@ export const styles = StyleSheet.create({
     },
     Movies: {
         marginBottom: 120,
-    }
+    },
 });

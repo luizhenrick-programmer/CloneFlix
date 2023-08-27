@@ -1,18 +1,17 @@
-import { MagnifyingGlass } from "phosphor-react-native";
-import { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   ActivityIndicator,
   FlatList,
   Text,
   TextInput,
   View,
+  TouchableOpacity,
 } from "react-native";
-
+import { MagnifyingGlass } from "phosphor-react-native";
 import { CardMovies } from "../../components/CardsMovies";
-
 import { api } from "../../services/api";
-
 import { styles } from "./styles";
+import { Details } from "../Details"
 
 interface Movie {
   id: number;
@@ -75,10 +74,14 @@ export function Home() {
 
   const movieData = search.length > 2 ? searchResultMovies : discoveryMovies;
 
+  const openMovieDetail = (movie) => {
+    <Details />
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerText}>Oque você quer assistir hoje?</Text>
+        <Text style={styles.headerText}>O que você quer assistir hoje?</Text>
 
         <View style={styles.containerInput}>
           <TextInput
@@ -88,7 +91,7 @@ export function Home() {
             value={search}
             onChangeText={handleSearch}
           />
-          <MagnifyingGlass color="#FFf" size={25} weight="light" />
+          <MagnifyingGlass color="#FFF" size={25} weight="light" />
         </View>
 
         {noResult && (
@@ -101,7 +104,11 @@ export function Home() {
         <FlatList
           data={movieData}
           numColumns={3}
-          renderItem={(item) => <CardMovies data={item.item} />}
+          renderItem={({ item }) => (
+            <TouchableOpacity onPress={() => openMovieDetail(item)}>
+              <CardMovies data={item} />
+            </TouchableOpacity>
+          )}
           showsVerticalScrollIndicator={false}
           keyExtractor={(item) => item.id.toString()}
           contentContainerStyle={{
@@ -116,3 +123,5 @@ export function Home() {
     </View>
   );
 }
+
+export default Home;
